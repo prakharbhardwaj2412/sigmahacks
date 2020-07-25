@@ -11,12 +11,12 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,400;1,700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="updateShop.css">
 </head>
 
-<body ng-app="myApp" ng-controller="homeCtrl as home">
+<body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">ONE STORE</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -25,52 +25,48 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto text-center">
                 <li class="nav-item">
-                    <a class="nav-link" ui-sref="home">Home</a>
+                    <a class="nav-link" href="dashboard.html">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" ui-sref="profile">Your Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" ng-click="home.signout()">Logout</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div class="container" >
+    <div class="container-fluid" ng-app="myApp" ng-controller="profileCtrl as profile">
         <div class="ui-router">
             <div class="main-content">
-                <div class="form-group">
-                    <table class="table category">
-                        <h3 class="text-center category">Select a category</h3>
-                        <tr ng-repeat="x in home.category">
-                            <td ng-click="home.selectedCategory(x)">{{x.type}}</td>
-                        </tr>
-                    </table>
-                    <table class="table shopname">
-                        <h3 class="text-center shopname">Select a category</h3>
-                        <tr>
-                            <th>Shop Names</th>
-                        </tr>
-                        <tr ng-repeat="x in home.shops">
-                            <td ng-click="home.selectedShop(x)">{{x.shopname}}</td>
-                        </tr>
-                    </table>
-                </div>
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Enter Working Hours</label>
+                        <div class="d-flex justify-content-center">
+                            <input type="time" class="form-control" id="openHRS" aria-describedby="emailHelp"
+                                ng-model="profile.openingHours">
+                            <input type="time" class="form-control" id="closeHRS" aria-describedby="emailHelp"
+                                ng-model="profile.openclosingHours">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Enter Your Address Here</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            ng-model="profile.address">
+                    </div>
+                    <button type="submit" class="btn btn-primary" ng-click="profile.geolocation()">View Location On
+                        Map</button>
+                    <br><br>
+                    <button type="submit" class="btn btn-primary" ng-click="profile.saveAddress()">Save Address</button>
+                </form>
             </div>
         </div>
     </div>
-
-
-
-
-
+    <div id="map" style="width:100vw;height:100vw;"></div>
 
 
     <!-- JS, Popper.js, and jQuery -->
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
     </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
@@ -80,8 +76,12 @@
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
     <!-- AngularJS -->
-    <script src="index.js"></script>
-    <script src="../../url.js"></script>
+    <script src="updateShop.js" defer></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyJe4yLMHd2Rd6Km6z5thlj9ZIvaBJqO8&callback=initMap">
+    </script>
+    <!-- <script src="../../url.js"></script> -->
+
 
 
 </body>

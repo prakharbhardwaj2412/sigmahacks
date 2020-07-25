@@ -41,7 +41,7 @@
       console.log(obj);
       var jsnObj = JSON.stringify(obj);
       console.log(jsnObj);
-
+      window.location.assign("dashboard.html");
       $http({
           method: "POST",
           url: backend + "registration/shop/",
@@ -76,7 +76,7 @@
       // var storageObj = { "username": $scope.username };
       // sessionStorage.setItem("doctorUsername", JSON.stringify(storageObj));
       // console.log(sessionStorage.getItem("doctorUsername"));
-
+      window.location.assign("dashboard.html");
       $http({
           method: "POST",
           url: backend + "registration/slogin/",

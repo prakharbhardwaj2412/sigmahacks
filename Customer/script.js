@@ -6,6 +6,7 @@
     app.controller('loginCtrl', function ($http) {
         let login = this;
         login.submit = () => {
+            window.location.href = "homepage/index.html";
             $http({
                     method: 'POST',
                     url: url + 'registration/login/',
@@ -40,6 +41,7 @@
         let reg = this;
         reg.submit = () => {
             console.log(reg)
+            window.location.href = "homepage/index.html";
             $http({
                     method: 'POST',
                     url: url + 'registration/',
