@@ -1,4 +1,6 @@
 (function () {
+    let url = window.url;
+
     let app = angular.module('app', []);
 
     app.controller('loginCtrl', function ($http) {
@@ -6,7 +8,7 @@
         login.submit = () => {
             $http({
                     method: 'POST',
-                    url: 'http://90a217506a14.ngrok.io/registration/login/',
+                    url: url + 'registration/login/',
                     data: {
                         "email": login.email,
                         "password": login.password
@@ -15,11 +17,17 @@
                 .then(
                     mysuccess = (response) => {
                         console.log(response.data)
-                        sessionStorage.name = response[0].name;
-                        sessionStorage.email = response[0].email;
-                        sessionStorage.address = response[0].address;
-                        sessionStorage.mobile_no = response[0].mobile_no;
-                        window.location.href = "homepage/index.html";
+                        if (response.data != "invalid credentials") {
+                            sessionStorage.name = response.data[0].name;
+                            sessionStorage.email = response.data[0].email;
+                            sessionStorage.address = response.data[0].address;
+                            sessionStorage.mobile_no = response.data[0].mobile_no;
+                            sessionStorage.id = response.data[0].id;
+                            window.location.href = "homepage/index.html";
+                        } else {
+                            alert(response.data)
+                        }
+
                     },
                     myfailure = (response) => {
                         console.log(response)
@@ -34,7 +42,7 @@
             console.log(reg)
             $http({
                     method: 'POST',
-                    url: 'http://90a217506a14.ngrok.io/registration/',
+                    url: url + 'registration/',
                     data: {
                         "name": reg.name,
                         "email": reg.email,
@@ -50,7 +58,7 @@
                             sessionStorage.password = reg.password;
                             $http({
                                     method: 'POST',
-                                    url: 'http://90a217506a14.ngrok.io/registration/login/',
+                                    url: url + 'registration/login/',
                                     data: {
                                         "email": reg.email,
                                         "password": reg.password
@@ -58,12 +66,16 @@
                                 })
                                 .then(
                                     mySuccess = (response) => {
-                                        console.log(response)
-                                        sessionStorage.name = response[0].name;
-                                        sessionStorage.email = response[0].email;
-                                        sessionStorage.address = response[0].address;
-                                        sessionStorage.mobile_no = response[0].mobile_no;
-                                        window.location.href = "homepage/index.html";
+                                        if (response.data != "invalid credentials") {
+                                            sessionStorage.name = response.data[0].name;
+                                            sessionStorage.email = response.data[0].email;
+                                            sessionStorage.address = response.data[0].address;
+                                            sessionStorage.mobile_no = response.data[0].mobile_no;
+                                            sessionStorage.mobile_no = response.data[0].id;
+                                            window.location.href = "homepage/index.html";
+                                        } else {
+                                            alert(response.data)
+                                        }
                                     },
                                     myFailure = (response) => {
                                         console.log(response.data)
